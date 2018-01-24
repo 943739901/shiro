@@ -19,6 +19,7 @@ public class ShiroHandler {
             UsernamePasswordToken token = new UsernamePasswordToken(username, password);
             token.setRememberMe(true);
             try {
+            	System.out.println(token.hashCode());
                 currentUser.login(token);
             } catch (AuthenticationException ae) {
             	System.out.println("登陆失败：" + ae.getMessage());
