@@ -103,11 +103,13 @@
                 /shiro/login = anon
                 /shiro/logout = logout
                 
+                /user.jsp = roles[user]
+                /admin.jsp = roles[admin]
                 # everything else requires authentication:
                 /** = authc
             </value>
         </property>
     </bean>
-	
-
+    
+    <bean id="shiroService" class="com.lpy.shiro.services.ShiroService"></bean>
 </beans>
