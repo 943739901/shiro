@@ -26,15 +26,23 @@
            overflowToDisk="false"
            statistics="true">
     </cache>
-
-    <cache name="shiro-activeSessionCache"
+	
+	<!-- 初始的ehcache -->
+    <!-- <cache name="shiro-activeSessionCache"
            eternal="false"
            timeToIdleSeconds="3600"
            timeToLiveSeconds="0"
            overflowToDisk="false"
            statistics="true">
+    </cache> -->
+ 	<cache name="shiro-activeSessionCache"
+ 		   maxElementsInMemory="10000"
+ 		   overflowToDisk="false"
+           eternal="false"
+           timeToIdleSeconds="0"
+           timeToLiveSeconds="0"
+           statistics="true">
     </cache>
-
     <!--Default Cache configuration. These will applied to caches programmatically created through
         the CacheManager.
 
@@ -104,7 +112,7 @@
         timeToIdleSeconds="0"
         timeToLiveSeconds="0"
         overflowToDisk="false"
-        /> -->
+        /> 
 
     <!-- Place configuration for your caches following -->
 

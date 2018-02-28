@@ -9,7 +9,6 @@ import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.realm.AuthenticatingRealm;
-import org.apache.shiro.realm.Realm;
 import org.apache.shiro.util.ByteSource;
 
 public class SecondRealm extends AuthenticatingRealm {

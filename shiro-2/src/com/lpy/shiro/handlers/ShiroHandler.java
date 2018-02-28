@@ -1,18 +1,16 @@
 package com.lpy.shiro.handlers;
 
+import javax.servlet.http.HttpSession;
+
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
-import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.lpy.shiro.services.ShiroService;
 
 @RequestMapping("/shiro")
@@ -22,9 +20,9 @@ public class ShiroHandler {
 	@Autowired
 	private ShiroService shiroService; 
 	
-	
 	@RequestMapping("/testAnnocation")
-	public String testAnnocation(){
+	public String testAnnocation(HttpSession session){
+		session.setAttribute("key", "value12345");
 		shiroService.testMethod();
 		return "redirect:/list.jsp";
 	}
@@ -36,8 +34,8 @@ public class ShiroHandler {
             UsernamePasswordToken token = new UsernamePasswordToken(username, password);
             token.setRememberMe(true);
             try {
-            	System.out.println(token.hashCode());
                 currentUser.login(token);
+                //shiroService.doCreateSession(currentUser.getSession());
             } catch (AuthenticationException ae) {
             	System.out.println("登陆失败：" + ae.getMessage());
             }
