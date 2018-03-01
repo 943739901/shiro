@@ -14,7 +14,7 @@
          (use DefaultSecurityManager instead when there is no web environment)-->
     <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
         <property name="cacheManager" ref="cacheManager"/>
-        <property name="sessionManager" ref="sessionManager"></property>
+        <!-- <property name="sessionManager" ref="sessionManager"></property> -->
         <!-- <property name="realm" ref="jdbcRealm"/> -->
         <property name="authenticator" ref="authenticator"></property>
         <property name="realms">
@@ -23,6 +23,7 @@
 				<ref bean="secondRealm"/>
 			</list>
 		</property>
+		<property name="rememberMeManager.cookie.maxAge" value="10"></property>
     </bean>
 
     <!-- Let's use some enterprise caching support for better performance.  You can replace this with any enterprise
@@ -115,15 +116,15 @@
         </property> -->
         <property name="filterChainDefinitionMap" ref="filterChainDefinitionMap"></property>
     </bean>
+   	<!--  sessionDao 配置 -->
     <!-- sessionId生成器 -->
-    <bean id="SessionIdGenerator" 
+    <!-- <bean id="SessionIdGenerator" 
     	class="org.apache.shiro.session.mgt.eis.JavaUuidSessionIdGenerator"></bean>
     
     <bean id="sessionDao" class="com.lpy.shiro.services.MySessionDao">
     	<property name="activeSessionsCacheName" value="shiro-activeSessionCache"></property>
     	<property name="sessionIdGenerator" ref="SessionIdGenerator"></property>
     	<property name="jdbcTemplate" ref="jdbcTemplate"></property>
-    	
     </bean>
     
     <bean id="sessionManager" class="org.apache.shiro.session.mgt.DefaultSessionManager">
@@ -142,13 +143,11 @@
 	    <property name="password" value="123456" />
 	    <property name="driverClassName" value="com.mysql.jdbc.Driver" />
 	    <property name="url" value="jdbc:mysql://localhost:3306/test?useSSL=false" />
-	</bean>
+	</bean> -->
 	
     <bean id="filterChainDefinitionMap" factory-bean="filterChainDefinitionMapBuilder" 
     	factory-method="buildfilterChainDefinitionMap"></bean>
 
 	<bean id="filterChainDefinitionMapBuilder" 
 		class="com.lpy.shiro.factory.filterChainDefinitionMapBuilder"></bean>
-    
-    <bean id="shiroService" class="com.lpy.shiro.services.ShiroService"></bean>
 </beans>

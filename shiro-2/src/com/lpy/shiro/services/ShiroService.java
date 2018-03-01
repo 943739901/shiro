@@ -13,11 +13,8 @@ import org.springframework.stereotype.Service;
 @Service
 public class ShiroService {
 	
-	@Autowired
-	MySessionDao sessionDao;
-	
-	@Autowired
-	JdbcTemplate jdbcTemplate;
+/*	@Autowired
+	MySessionDao sessionDao;*/
 	
 	@RequiresRoles("admin")
 	public void testMethod(){
@@ -28,18 +25,6 @@ public class ShiroService {
 		Object val = session.getAttribute("key");
 		
 		System.out.println("Service中的sessionVal："+val);
-		
-		String sql = "select session from sessions where id=?";
-		List<String> sessionStrList = jdbcTemplate.queryForList(sql,
-				String.class, 1);
-		System.out.println("sessionList");
-		for (String string : sessionStrList) {
-			System.out.println(string);
-		}
-	}
-
-	public void doCreateSession(Session session) {
-		sessionDao.doCreate(session);
 	}
 }
 

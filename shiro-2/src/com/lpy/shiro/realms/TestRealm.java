@@ -20,5 +20,4 @@ public class TestRealm extends AuthorizingRealm {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
 }

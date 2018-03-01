@@ -6,13 +6,10 @@ import java.util.List;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.session.mgt.ValidatingSession;
 import org.apache.shiro.session.mgt.eis.EnterpriseCacheSessionDAO;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
 
 import com.lpy.shiro.util.SerializableUtils;
-
 
 public class MySessionDao extends EnterpriseCacheSessionDAO{
 	
@@ -20,7 +17,6 @@ public class MySessionDao extends EnterpriseCacheSessionDAO{
 
 	@Override
 	protected Serializable doCreate(Session session) {
-		System.out.println(jdbcTemplate);
 		Serializable sessionId = generateSessionId(session);
 		assignSessionId(session, sessionId);
 		String sql = "insert into sessions(id, session) values(?,?)";

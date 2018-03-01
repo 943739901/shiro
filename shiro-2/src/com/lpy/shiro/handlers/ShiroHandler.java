@@ -35,7 +35,6 @@ public class ShiroHandler {
             token.setRememberMe(true);
             try {
                 currentUser.login(token);
-                //shiroService.doCreateSession(currentUser.getSession());
             } catch (AuthenticationException ae) {
             	System.out.println("登陆失败：" + ae.getMessage());
             }
